@@ -1,6 +1,10 @@
 # purpleair-raspberry-pi
 Display PurpleAir color on a Raspberry Pi with Unicorn Hat and blink(1) light
 
+Unicorn Hat is a 8x8 RGB LED matrix that sits on top of the Raspberry Pi
+
+blink(1) is a USB device with two RGB LED lights (one on each side)
+
 ![Purple Raspberry Pi](https://chriscarey.com/blog/wp-content/uploads/2020/09/purple-pi.png)
 
 ## Introduction
