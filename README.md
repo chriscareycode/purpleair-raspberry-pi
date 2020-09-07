@@ -1,18 +1,21 @@
 # purpleair-raspberry-pi
+
 Display PurpleAir color on a Raspberry Pi with Unicorn Hat and blink(1) light
 
-Unicorn Hat is a 8x8 RGB LED matrix that sits on top of the Raspberry Pi
+## Introduction
 
-blink(1) is a USB device with two RGB LED lights (one on each side)
+With all the fires in California, I was checking ![PurpleAir](https://purpleair.com) multiple times per day to track what the air is like outside – waiting for a moment when the AQI improves so we can open some windows or take a walk. It seemed like a good idea to use some of these Raspberry Pi computers to always show the air quality. At least, while the fires are still active.
+
+I have a bunch of Raspberry Pi boards handy, and two with the Pimoroni Unicorn Hat 64 RGB light array on them. This would work perfectly as a display for current air quality conditions.
+
+In addition I have a few of the Blink(1) USB lights. This will add even more color.
+
+*Unicorn Hat* is a 8x8 RGB LED matrix that sits on top of the Raspberry Pi
+
+*blink(1)* is a USB device with two RGB LED lights (one on each side)
 
 ![Purple Raspberry Pi](https://chriscarey.com/blog/wp-content/uploads/2020/09/purple-pi.png)
 
-## Introduction
-I have a Raspberry Pi 2B and a Raspberry Pi 3 each with these lights.
-
-This script currently requires both a Unicorn Hat, and blink(1) light to be present to work.
-
-In the future, I will add some options so the attached hardware used for the lights can be a bit more configurable and modular.
 
 ## Hardware to buy
 
@@ -35,6 +38,8 @@ Software for Blink(1) USB light
 http://blink1.thingm.com/libraries/ (Python)
 
 ## How to run the script
+
+This script currently requires both a Unicorn Hat, and blink(1) light to be present to work.
 
 The example scripts for the Unicorn Hat and the blink(1) light execute as root in order to be able to access the hardware.
 There are some ways to get around this and run as non-root and I'd like to investigate this more in the future to tighten this down.
