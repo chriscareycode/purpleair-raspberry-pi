@@ -4,7 +4,7 @@ Display PurpleAir color on a Raspberry Pi with Unicorn Hat and blink(1) light
 
 ## Introduction
 
-With all the fires in California, I was checking ![PurpleAir](https://purpleair.com) multiple times per day to track what the air is like outside – waiting for a moment when the AQI improves so we can open some windows or take a walk. It seemed like a good idea to use some of these Raspberry Pi computers to always show the air quality. At least, while the fires are still active.
+With all the fires in California, I was checking [PurpleAir](https://purpleair.com) multiple times per day to track what the air is like outside – waiting for a moment when the AQI improves so we can open some windows or take a walk. It seemed like a good idea to use some of these Raspberry Pi computers to always show the air quality. At least, while the fires are still active.
 
 I have a bunch of Raspberry Pi boards handy, and two with the Pimoroni Unicorn Hat 64 RGB light array on them. This would work perfectly as a display for current air quality conditions.
 
