@@ -22,6 +22,8 @@ Unicorn Hat https://shop.pimoroni.com/products/unicorn-hat
 
 blink(1) USB Light https://blink1.thingm.com/
 
+On these Pis I used the C4Labs Zebra Case https://www.amazon.com/gp/product/B00M6G9YBM/ - It fits around the Unicorn Hat pretty well.
+
 (These links are just to the product pages, you can probably find these items at many online retailers)
 
 ## Install the software for the Unicorn Hat and blink(1) lights
