@@ -3,6 +3,13 @@ Display PurpleAir color on a Raspberry Pi with Unicorn Hat and blink(1) light
 
 ![Purple Raspberry Pi](https://chriscarey.com/blog/wp-content/uploads/2020/09/purple-pi.png)
 
+## Introduction
+I have a Raspberry Pi 2B and a Raspberry Pi 3 each with these lights.
+
+This script currently requires both a Unicorn Hat, and blink(1) light to be present to work.
+
+In the future, I will add some options so the attached hardware used for the lights can be a bit more configurable and modular.
+
 ## Hardware to buy
 
 A Raspberry Pi
@@ -11,12 +18,13 @@ Unicorn Hat https://shop.pimoroni.com/products/unicorn-hat
 
 blink(1) USB Light https://blink1.thingm.com/
 
-## Introduction
-I have a Raspberry Pi 2B and a Raspberry Pi 3 each with these lights.
+## Install the software for the Unicorn Hat and blink(1) lights
 
-This script currently requires both a Unicorn Hat, and blink(1) light to be present to work.
+Software for Unicorn Hat
+https://learn.pimoroni.com/tutorial/unicorn-hat/getting-started-with-unicorn-hat
 
-In the future, I will add some options so the attached hardware used for the lights can be a bit more configurable and modular.
+Software for Blink(1) USB light
+http://blink1.thingm.com/libraries/ (Python)
 
 ## How to run the script
 
