@@ -76,5 +76,6 @@ This will create a new "screen" session named "purpleair" with the purpleair scr
 * Detect which hardware is installed and react appropriately (Support if only Unicorn Hat is detected, or only blink(1) is detected, or both)
 * Make adding new hardware types easy
 * Decouple the timing mechanism for how often to hit PurpleAir API from the Unicorn Hat display. Decouple the white pixel from the timing as well.
+* Instead of specific "steps" for color - green, yellow, orange, red, dark red, purple - add support for smooth gradient between these colors.
 
 
