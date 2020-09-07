@@ -5,6 +5,8 @@ Display PurpleAir color on a Raspberry Pi with Unicorn Hat and blink(1) light
 
 ## Hardware to buy
 
+A Raspberry Pi
+
 Unicorn Hat https://shop.pimoroni.com/products/unicorn-hat
 
 blink(1) USB Light https://blink1.thingm.com/
@@ -48,6 +50,8 @@ Make sure `screen` is installed
 ```bash
 apt install screen
 ```
+
+Reboot your Raspberry Pi and see if the script starts on it's own.
 
 This will create a new "screen" session named "purpleair" with the purpleair script running inside of it
 
