@@ -71,3 +71,10 @@ Reboot your Raspberry Pi and see if the script starts on it's own.
 
 This will create a new "screen" session named "purpleair" with the purpleair script running inside of it
 
+### TODO
+
+* Detect which hardware is installed and react appropriately
+* Make adding new hardware types easy
+* Decouple the timing mechanism for how often to hit PurpleAir API from the Unicorn Hat display. Decouple the white pixel from the timing as well.
+
+
