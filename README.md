@@ -1,9 +1,13 @@
 # purpleair-raspberry-pi
 Display PurpleAir color on a Raspberry Pi with Unicorn Hat and blink(1) light
 
-This script currently requires both a Unicorn Hat, and blink(1) light to be present to work.
+Unicorn Hat https://shop.pimoroni.com/products/unicorn-hat
+blink(1) USB Light https://blink1.thingm.com/
 
-In the future, I will add some options so it works with one or the other, or both.
+I have one Raspberry Pi 2B and one Raspberry Pi 3 with these lights.
+
+This script requires both a Unicorn Hat, and blink(1) light to be present to work.
+In the future, I will add some options so the attached hardware can be a bit more configurable and modular.
 
 The example scripts for the Unicorn Hat and the blink(1) light execute as root in order to be able to access the hardware.
 There are some ways to get around this and run as non-root and I'd like to investigate this more in the future to tighten this down.
