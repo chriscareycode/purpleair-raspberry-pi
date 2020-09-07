@@ -2,6 +2,7 @@
 Display PurpleAir color on a Raspberry Pi with Unicorn Hat and blink(1) light
 
 Unicorn Hat https://shop.pimoroni.com/products/unicorn-hat
+
 blink(1) USB Light https://blink1.thingm.com/
 
 I have one Raspberry Pi 2B and one Raspberry Pi 3 with these lights.
