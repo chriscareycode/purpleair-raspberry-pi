@@ -18,6 +18,8 @@ Unicorn Hat https://shop.pimoroni.com/products/unicorn-hat
 
 blink(1) USB Light https://blink1.thingm.com/
 
+(These links are just to the product pages, you can probably find these items at many online retailers)
+
 ## Install the software for the Unicorn Hat and blink(1) lights
 
 Software for Unicorn Hat
