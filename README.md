@@ -10,9 +10,9 @@ I have a bunch of Raspberry Pi boards handy, and two with the Pimoroni Unicorn H
 
 In addition I have a few of the Blink(1) USB lights. This will add even more color.
 
-*Unicorn Hat* is a 8x8 RGB LED matrix that sits on top of the Raspberry Pi
+*Unicorn Hat* is a 8x8 64 RGB LED matrix that sits on top of the Raspberry Pi
 
-*blink(1)* is a USB device with two RGB LED lights (one on each side)
+*blink(1)* is a USB device with two RGB LED lights (one on each side). That's the device plugged in on the top.
 
 ![Purple Raspberry Pi](https://chriscarey.com/blog/wp-content/uploads/2020/09/purple-pi.png)
 
