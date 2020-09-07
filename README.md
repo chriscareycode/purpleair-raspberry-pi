@@ -13,7 +13,7 @@ For now though, the way to run this script is:
 sudo ./purpleair.py
 ```
 
-Getting the script to run when the Pi boots up:
+### Getting the script to run when the Pi boots up:
 
 The way I'm setting this up right now is to use "screen" to launch this in on boot
 
