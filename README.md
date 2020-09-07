@@ -1,6 +1,8 @@
 # purpleair-raspberry-pi
 Display PurpleAir color on a Raspberry Pi with Unicorn Hat and blink(1) light
 
+![Purple Raspberry Pi](https://chriscarey.com/blog/wp-content/uploads/2020/09/purple-pi.png)
+
 Unicorn Hat https://shop.pimoroni.com/products/unicorn-hat
 
 blink(1) USB Light https://blink1.thingm.com/
