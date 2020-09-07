@@ -37,23 +37,10 @@ def fetch_purpleair():
 
         url = "https://www.purpleair.com/json?show=" + purpleair_station
         
-        # old technique before adding headers
-        #response = urllib.urlopen(url)
-        #data = json.load(response)
-
-        # new technique with headers
+        # technique with headers
         req = Request(url)
         req.add_header('accept', 'application/json, text/javascript, */*; q=0.01')
-        #req.add_header('accept-encoding', 'gzip, deflate, br')
-        #req.add_header('accept-language', 'en-US,en;q=0.9')
-        #req.add_header('cache-control', 'no-cache')
-        #req.add_header('pragma', 'no-cache')
-        #req.add_header('referer', '')
-        #req.add_header('sec-fetch-dest', 'empty')
-        #req.add_header('sec-fetch-mode', 'cors')
-        #req.add_header('sec-fetch-site', 'same-origin')
-        #req.add_header('user-agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36')
-        #req.add_header('x-requested-with', 'XMLHttpRequest')
+        
 
         try:
                 response = urlopen(req)
@@ -73,15 +60,11 @@ def fetch_purpleair():
                 print "Some other error happened:", err.reason
                 return None
         
-	#response = urlopen(req)
-        #content = resp.read()
-	#print content
-
         data = json.load(response)
 
         #print data
         pm25_string = data["results"][0]["PM2_5Value"]
-        print "Mountain View - Got PM2_5Value value: " + pm25_string
+        print "Got PM2_5Value value: " + pm25_string
         # convert string to float and return function
         return float(pm25_string)
 
