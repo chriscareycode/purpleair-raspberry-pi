@@ -51,7 +51,7 @@ sudo ./purpleair.py
 
 ### Getting the script to run when the Pi boots up:
 
-The way I'm setting this up right now is to use "screen" to launch this in on boot
+The way I'm setting this up right now is to use "screen" to launch this in on boot. Make sure `screen` is installed:
 
 ```bash
 apt install screen
@@ -64,12 +64,6 @@ At the bottom of rc.local, ABOVE exit 0, add:
 ```bash
 # start purpleair in screen
 su - pi -c "/usr/bin/screen -dmS purpleair sudo /home/pi/purpleair.py"
-```
-
-Make sure `screen` is installed
-
-```bash
-apt install screen
 ```
 
 Reboot your Raspberry Pi and see if the script starts on it's own.
