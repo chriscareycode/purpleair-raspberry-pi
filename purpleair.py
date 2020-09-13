@@ -11,9 +11,9 @@ from random import randint
 from time import sleep
 
 try:
-    from urllib.request import Request, HTTPError, urlopen  # Python 3
+    from urllib.request import Request, HTTPError, URLError, urlopen  # Python 3
 except ImportError:
-    from urllib2 import Request, HTTPError, urlopen  # Python 2
+    from urllib2 import Request, HTTPError, URLError, urlopen  # Python 2
 import json
 
 # Import Blink(1) USB light
