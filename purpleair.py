@@ -35,7 +35,7 @@ b1 = Blink1()
 
 # store history of numbers we have
 history = []
-history_max_len = 64
+history_max_len = width * height
 
 fetch_every_seconds = 300
 
