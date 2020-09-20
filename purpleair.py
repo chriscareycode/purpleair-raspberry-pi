@@ -19,19 +19,40 @@ except ImportError:
 import json
 
 # Import Blink(1) USB light
-from blink1.blink1 import Blink1
+try:
+	from blink1.blink1 import Blink1
+	blink1_detected = True
+	print("blink(1) detected")
+except ImportError:
+	blink1_detected = False
+	print("No blink(1) detected")
 
 # Import Unicorn Hat
-import unicornhat as unicorn
+try:
+	import unicornhat as unicorn
+	unicorn_detected = True
+	print("Unicorn Hat detected")
+except ImportError:
+	unicorn_detected = False
+	print("No Unicorn Hat detected")
+
+try:
+	import unicornhathd as unicorn
+	unicornhd_detected = True
+	print("Unicorn Hat HD detected")
+except ImportError:
+	unicornhd_detected = False
+	print("No Unicorn Hat HD detected")
 
 # Configure the Unicorn Hat
-unicorn.set_layout(unicorn.AUTO)
-unicorn.rotation(90)
+#unicorn.set_layout(unicorn.AUTO)
+unicorn.rotation(0)
 unicorn.brightness(0.5)
 width, height = unicorn.get_shape()
 
 # Configure the Blink(1)
-b1 = Blink1()
+if blink1_detected:
+	b1 = Blink1()
 
 # store history of numbers we have
 history = []
@@ -40,7 +61,6 @@ history_max_len = width * height
 fetch_every_seconds = 300
 
 def fetch_purpleair():
-
 
 	url = "https://www.purpleair.com/json?show=" + purpleair_station
 
@@ -87,7 +107,8 @@ def set_color(pm25_float, is_error):
 	print r, g, b
 
 	# set blink(1) USB color
-	b1.fade_to_rgb(1000, r, g, b)
+	if blink1_detected:
+		b1.fade_to_rgb(1000, r, g, b)
 
 	# set unicorn hat to the color
 	# This looks a bit more complicated than it needs to be since I decided to have the color on the
@@ -159,7 +180,13 @@ def draw_history_to_unicorn():
 
 	counter = 0
 
-	for y in range(height):
+	if unicorn_detected:
+		yrange = range(height);
+
+	if unicornhd_detected:
+		yrange = range(height - 1, -1, -1);
+
+	for y in yrange:
 		for x in range(width):
 
 			# if we have an item in history for this position
@@ -180,7 +207,8 @@ def draw_history_to_unicorn():
 
 def main_loop():
 	global fetch_every_seconds
-
+	global blink1_detected
+  
 	pm25_float_previous = 0
 
 	while True:
@@ -199,7 +227,8 @@ def main_loop():
 			rgb_dict = pm25_to_rgb(pm25_float);
 
 			# set blink(1) USB color
-			b1.fade_to_rgb(1000, rgb_dict["r"], rgb_dict["g"], rgb_dict["b"])
+			if blink1_detected:
+				b1.fade_to_rgb(1000, rgb_dict["r"], rgb_dict["g"], rgb_dict["b"])
 
 			# save the previous purpleair value in a variable
 			pm25_float_previous = pm25_float
@@ -226,10 +255,25 @@ def main_loop():
 # the white dot will loop around the pi, when it reaches the end is about the time purpleair will fetch
 
 def white_dot_loop():
-	sleep_time = fetch_every_seconds % height * width
+	global height
+	global width
+	global fetch_every_seconds
+
+	sleep_time = fetch_every_seconds / float(height * width)
+	print("fetch_every_seconds is " + str(fetch_every_seconds))
+	print("height is " + str(height))
+	print("width is " + str(width))
+	print("height * width is " + str(height * width))
+	print("sleep_time is " + str(sleep_time))
 	while True:
 
-		for y in range(height):
+		if unicorn_detected:
+			yrange = range(height);
+
+		if unicornhd_detected:
+			yrange = range(height - 1, -1, -1);
+
+		for y in yrange:
 			for x in range(width):
 
 				#we can run into timing issue when we save the pixel it can change. so lets flush the history out periodically to fix
@@ -241,7 +285,7 @@ def white_dot_loop():
 				#print(pixel)
 				unicorn.set_pixel(x, y, 200, 200, 200)
 				unicorn.show()
-				sleep(4.6875)
+				sleep(sleep_time)
 				unicorn.set_pixel(x, y, saved_pixel[0], saved_pixel[1], saved_pixel[2])
 				unicorn.show()
 
