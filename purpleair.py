@@ -11,6 +11,7 @@ from random import randint
 from time import sleep
 from threading import Thread
 import json
+import datetime as dt
 
 try:
 	from urllib.request import Request, HTTPError, URLError, urlopen  # Python 3
@@ -95,49 +96,7 @@ def fetch_purpleair():
 	# convert string to float and return function
 	return float(pm25_string)
 
-# this routine takes 5m to run due to the sleep()
-def set_color(pm25_float, is_error):
 
-	print str(pm25_float)
-
-	rgb_dict = pm25_to_rgb(pm25_float);
-	r = rgb_dict["r"]
-	g = rgb_dict["g"]
-	b = rgb_dict["b"]
-	print r, g, b
-
-	# set blink(1) USB color
-	if blink1_detected:
-		b1.fade_to_rgb(1000, r, g, b)
-
-	# set unicorn hat to the color
-	# This looks a bit more complicated than it needs to be since I decided to have the color on the
-	# hat change pixel by pixel gradually over time. In addition, I wanted a pixel on the display to slowly change
-	# so that we can see the script is still running. I chose to use a white pixel that moves around the hat
-	# and when that white pixel reaches the bottom right corner, it will fetch from purpleair again.
-	# This routine is what is "slowing down" the fetching so its not happening all the time.
-	# By having a sleep(5) here, we are sleeping 5 seconds between each pixel change.
-	# With 64 pixels, we are sleeping 64 * 5 seconds before fetch_purpleair runs again
-
-	for y in range(height):
-		for x in range(width):
-
-			# set the color to the white dot (or blue if error)
-			if is_error:
-				# show blue dot if error (will be displaying old data)
-				unicorn.set_pixel(x, y, 0, 0, 255)
-			else:
-				# show white dot if no error
-				unicorn.set_pixel(x, y, 200, 200, 200)
-
-			# flush the changes out to the unicorn hat
-			unicorn.show()
-			# sleep 5 seconds
-			sleep(5)
-			# set the pixel color to the purpleair color
-			unicorn.set_pixel(x,y,r,g,b)
-			# flush the changes out to the unicorn hat
-			unicorn.show()
 						
 # just a note that purpleair api is returning pm25_raw, not US AQI
 # we need to figure out the algo to convert the raw to that since that is the number most people refer to
@@ -201,6 +160,17 @@ def draw_history_to_unicorn():
 
 				counter = counter + 1
 
+	# change unicorn brightness based on time of day
+	hour = dt.datetime.now().hour
+	#print("hour is " + str(hour))
+	if (hour > 20 or hour < 8):
+		if unicornhd_detected:
+			unicorn.brightness(0.1)
+		else:
+			unicorn.brightness(0.3)
+	else:
+		unicorn.brightness(0.5)
+
 	# flush the changes out to the unicorn hat
 	unicorn.show()
 
@@ -211,14 +181,19 @@ def main_loop():
   
 	pm25_float_previous = 0
 
+
 	while True:
+		
+		hour = dt.datetime.now().hour
+		#print("hour is " + str(hour))
+		
 		# fetch data from purpleair. Return the pm25 raw data in pm25_float
 		pm25_float = fetch_purpleair()
 
 		if pm25_float is None:
 			# if we had an error fetching from purpleiar, then show the previous value
 			# but in that routine we will change the dot color so we know it's stale data
-			#set_color(pm25_float_previous, True)
+			
 			print("got bad data")
 		else:
 			# we got good data from purpleair
@@ -226,9 +201,19 @@ def main_loop():
 			# convert the value to rgb
 			rgb_dict = pm25_to_rgb(pm25_float);
 
-			# set blink(1) USB color
+			# change brightness based on time of day
+			
+
+
+			# set blink(1) USB color (changes based on time of day)
 			if blink1_detected:
-				b1.fade_to_rgb(1000, rgb_dict["r"], rgb_dict["g"], rgb_dict["b"])
+				if (hour > 20 or hour < 8):
+					if blink1_detected:
+						b1.off()
+				else:
+					if blink1_detected:
+						b1.fade_to_rgb(1000, rgb_dict["r"], rgb_dict["g"], rgb_dict["b"])
+				
 
 			# save the previous purpleair value in a variable
 			pm25_float_previous = pm25_float
@@ -245,8 +230,6 @@ def main_loop():
 			# save history to file (we should only do this every 5m)
 			save_history_to_file()
 
-	  	# draw the purple air data
-	  	#set_color(pm25_float, False)
 
 		draw_history_to_unicorn()
 
@@ -277,8 +260,9 @@ def white_dot_loop():
 			for x in range(width):
 
 				#we can run into timing issue when we save the pixel it can change. so lets flush the history out periodically to fix
-				if x == 7:
-					draw_history_to_unicorn()
+				# this is a weak fix to my multi threaded bug with the white dot. lets turn this off and fix the issue another way
+				#if x == 7:
+				#	draw_history_to_unicorn()
 
 				#print("white dot loop")
 				saved_pixel = unicorn.get_pixel(x, y)
