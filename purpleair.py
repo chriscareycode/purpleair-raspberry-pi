@@ -112,6 +112,11 @@ def pm25_to_rgb(pm25_float):
 		r = 0
 		g = 255
 		b = 0
+	elif pm25_float < 16:
+		# yellow / green
+		r = 192
+		g = 255
+		b = 0
 	elif pm25_float < 22:
 		# yellow
 		r = 255
