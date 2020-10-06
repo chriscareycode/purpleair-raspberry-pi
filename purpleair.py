@@ -174,7 +174,7 @@ def draw_history_to_unicorn():
 	# change unicorn brightness based on time of day
 	hour = dt.datetime.now().hour
 	#print("hour is " + str(hour))
-	if (hour >= 20 or hour < 8):
+	if (hour >= 22 or hour < 8):
 		if unicornhd_detected:
 			unicorn.brightness(0.1)
 		else:
@@ -218,7 +218,7 @@ def main_loop():
 
 			# set blink(1) USB color (changes based on time of day)
 			if blink1_detected:
-				if (hour >= 20 or hour < 8):
+				if (hour >= 22 or hour < 8):
 					if blink1_detected:
 						b1.off()
 				else:
